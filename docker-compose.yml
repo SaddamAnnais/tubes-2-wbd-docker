@@ -1,0 +1,60 @@
+version: "3.3"
+services:
+  # Monolith PHP App
+  cooklyst-app-web:
+    extends:
+      file: ../tubes-2-wbd-app/docker-compose.yml
+      service: cooklyst-app-web
+    networks:
+      - cooklyst-network
+  cooklyst-app-db:
+    extends:
+      file: ../tubes-2-wbd-app/docker-compose.yml
+      service: cooklyst-app-db
+    networks:
+      - cooklyst-network
+
+  # Client SPA
+  cooklyst-client:
+    extends:
+      file: ../tubes-2-wbd-client/docker-compose.yml
+      service: cooklyst-client
+    networks:
+      - cooklyst-network
+
+  # REST
+  cooklyst-rest-api:
+    extends:
+      file: ../tubes-2-wbd-rest/docker-compose.yml
+      service: cooklyst-rest-api
+    networks:
+      - cooklyst-network
+  cooklyst-rest-db:
+    extends:
+      file: ../tubes-2-wbd-rest/docker-compose.yml
+      service: cooklyst-rest-db
+    networks:
+      - cooklyst-network
+  cooklyst-rest-cache:
+    extends:
+      file: ../tubes-2-wbd-rest/docker-compose.yml
+      service: cooklyst-rest-cache
+    networks:
+      - cooklyst-network
+
+  # SOAP
+  cooklyst-soap-service:
+    extends:
+      file: ../tubes-2-wbd-soap/docker-compose.yml
+      service: cooklyst-soap-service
+    networks:
+      - cooklyst-network
+  cooklyst-soap-db:
+    extends:
+      file: ../tubes-2-wbd-soap/docker-compose.yml
+      service: cooklyst-soap-db
+    networks:
+      - cooklyst-network
+
+networks:
+  cooklyst-network:
